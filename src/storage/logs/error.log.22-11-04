@@ -1,0 +1,1 @@
+{"level":"error","message":{"body":{"confirm_password1":"con_pwd","name":"test","password":"pwd"},"err":"\"confirm_password\" is required","method":"POST","path":"/api/v1/user","query":{}},"timestamp":"22-11-04 12:47:38 AM"}

@@ -1,0 +1,14 @@
+datasource db {
+    provider = "mysql"
+    url      = "mysql://root:12345678@localhost:3306/koa_xigua_blog"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id       Int    @id @default(autoincrement())
+    name     String
+    password String
+}
