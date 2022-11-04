@@ -8,7 +8,46 @@ generator client {
 }
 
 model User {
-    id       Int    @id @default(autoincrement())
-    name     String
-    password String
+    id          Int       @id @default(autoincrement())
+    name        String
+    password    String
+    created_at  DateTime  @default(now())
+    modified_at DateTime  @default(now()) @updatedAt
+    deleted_at  DateTime? @db.DateTime()
+    is_del      Boolean   @default(false)
+}
+
+model Tag {
+    id          Int           @id @default(autoincrement())
+    name        String
+    published   Boolean       @default(true)
+    created_at  DateTime      @default(now())
+    modified_at DateTime      @default(now()) @updatedAt
+    deleted_at  DateTime?     @db.DateTime()
+    is_del      Boolean       @default(false)
+    TagsOnPosts TagsOnPosts[]
+}
+
+model Post {
+    id              Int           @id @default(autoincrement())
+    title           String
+    desc            String        @db.VarChar(255)
+    content         String        @db.Text
+    cover_image_url String
+    published       Boolean       @default(false)
+    created_at      DateTime      @default(now())
+    modified_at     DateTime      @default(now()) @updatedAt
+    deleted_at      DateTime?     @db.DateTime()
+    is_del          Boolean       @default(false)
+    TagsOnPosts     TagsOnPosts[]
+}
+
+model TagsOnPosts {
+    post        Post     @relation(fields: [post_id], references: [id])
+    post_id     Int
+    tag         Tag      @relation(fields: [tag_id], references: [id])
+    tag_id      Int
+    assigned_at DateTime @default(now())
+
+    @@id([post_id, tag_id])
 }

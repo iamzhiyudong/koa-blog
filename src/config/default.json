@@ -1,6 +1,0 @@
-{
-    "port": 8080,
-    "dbName": "koa_xigua",
-    "dbUser": "root",
-    "dbPassword": "12345678"
-}

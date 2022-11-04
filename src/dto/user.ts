@@ -10,6 +10,10 @@ const UserDto = {
         password: Joi.string().required().error(new Error('密码必填')),
         confirm_password: Joi.string().required(),
     }),
+    updateUserDto: Joi.object({
+        name: Joi.string(),
+        password: Joi.string(),
+    }),
 }
 
 export default UserDto

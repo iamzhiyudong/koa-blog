@@ -5,7 +5,11 @@ import { HttpException } from '../middleware/catch-err'
 // 默认成功响应
 function commonRes(
     ctx: Context,
-    data: string | Array<unknown> | { data: Array<unknown>; total: number }
+    data:
+        | string
+        | Array<unknown>
+        | null
+        | { data: Array<unknown>; total: number }
 ) {
     const status = Code.Success.status
     const code = Code.Success.code

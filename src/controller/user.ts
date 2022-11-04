@@ -1,13 +1,49 @@
 import { Context } from 'koa'
 import UserDto from '../dto/user'
 import commonRes from '../utils/common-res'
+import db from '../utils/db-connect'
+import getPager from '../utils/page'
 import { validate } from '../utils/validate'
 
-export function getUserList(ctx: Context) {
-    commonRes(ctx, 'get user list')
+export async function getUserList(ctx: Context) {
+    const { skip, take } = getPager(ctx)
+
+    const userList = await db.user.findMany({
+        where: { is_del: false },
+        skip,
+        take,
+    })
+    commonRes(ctx, { data: userList, total: userList.length })
 }
 
-export function createUser(ctx: Context) {
-    const value = validate(ctx, UserDto.createUserDto, ctx.request.body)
-    commonRes(ctx, value)
+export async function createUser(ctx: Context) {
+    const { name, password, confirm_password } = validate(
+        UserDto.createUserDto,
+        ctx.request.body
+    )
+
+    if (password !== confirm_password) {
+        commonRes.error('ParameterException', '两次密码不一致')
+    }
+
+    await db.user.create({ data: { name, password } })
+    commonRes(ctx, null)
+}
+
+export async function updateUser(ctx: Context) {
+    const { name, password } = validate(UserDto.updateUserDto, ctx.request.body)
+    const id = +ctx.params.id
+
+    const user = await db.user.findFirst({ where: { id, is_del: false } })
+    if (user) {
+        await db.user.update({
+            where: { id },
+            data: { name, password },
+        })
+    } else {
+        // TODO 自定义响应
+        commonRes.error('ParameterException', '不存在此用户')
+    }
+
+    commonRes(ctx, null)
 }

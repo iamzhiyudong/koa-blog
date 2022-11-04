@@ -1,5 +1,6 @@
 import Koa, { Context, Next } from 'koa'
 import initMiddleware from './middleware'
+import config from 'config'
 import router from './router'
 
 const app = new Koa()
@@ -12,4 +13,4 @@ router.get('/', (ctx: Context, next: Next) => {
 
 app.use(router.routes()).use(router.allowedMethods())
 
-app.listen(8080)
+app.listen(config.get('app.port'))

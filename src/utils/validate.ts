@@ -4,7 +4,6 @@ import commonRes from '../utils/common-res'
 
 // 参数校验
 export function validate(
-    ctx: Context,
     dtoSchema: Joi.ObjectSchema<any>,
     data: Record<any, any>
 ) {

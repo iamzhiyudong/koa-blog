@@ -36,7 +36,7 @@ export async function errorCatch(ctx: Context, next: Next) {
             msg: err.msg || err.message
         }
         logger.error(logObj)
-        console.error(logObj)
+        logger.info(err.msg || err.message)
 
         if (err instanceof HttpException) {
             ctx.status = err.status
