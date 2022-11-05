@@ -8,13 +8,11 @@ generator client {
 }
 
 model User {
-    id          Int       @id @default(autoincrement())
-    name        String
-    password    String
-    created_at  DateTime  @default(now())
-    modified_at DateTime  @default(now()) @updatedAt
-    deleted_at  DateTime? @db.DateTime()
-    is_del      Boolean   @default(false)
+    id         Int      @id @default(autoincrement())
+    name       String
+    password   String
+    created_at DateTime @default(now())
+    updated_at DateTime @default(now()) @updatedAt
 }
 
 model Tag {
@@ -22,9 +20,7 @@ model Tag {
     name        String
     published   Boolean       @default(true)
     created_at  DateTime      @default(now())
-    modified_at DateTime      @default(now()) @updatedAt
-    deleted_at  DateTime?     @db.DateTime()
-    is_del      Boolean       @default(false)
+    updated_at  DateTime      @default(now()) @updatedAt
     TagsOnPosts TagsOnPosts[]
 }
 
@@ -36,9 +32,7 @@ model Post {
     cover_image_url String
     published       Boolean       @default(false)
     created_at      DateTime      @default(now())
-    modified_at     DateTime      @default(now()) @updatedAt
-    deleted_at      DateTime?     @db.DateTime()
-    is_del          Boolean       @default(false)
+    updated_at      DateTime      @default(now()) @updatedAt
     TagsOnPosts     TagsOnPosts[]
 }
 

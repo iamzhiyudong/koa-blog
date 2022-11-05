@@ -34,6 +34,7 @@ class ResCode {
 // 枚举状态码 根据自己需要定义
 const Code = {
     Success: new ResCode(200, 0, '请求成功'),
+    SuccessWithException: new ResCode(200, -1, '处理失败'),
     ParameterException: new ResCode(400, -1, '参数错误'),
     Forbidden: new ResCode(403, -1, '无权限'),
     ServerError: new ResCode(500, -1, '系统异常'),
