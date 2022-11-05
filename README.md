@@ -11,6 +11,8 @@
 - 数据库：mysql
 - 参数校验：joi
 - 配置读取：config
+- 鉴权：koa-jwt、jsonwebtoken
+- 跨域：koa2-cors
 
 ## 基础配置
 
@@ -25,6 +27,7 @@
 - 异常捕获：errorCatch
     - 自定义 HttpException
     - 捕获 HttpException 后记录日志，并返回错误响应
+    - 鉴权异常
 - 其他：解析请求体、响应头等
 
 ### 日志记录封装
