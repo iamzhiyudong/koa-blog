@@ -21,7 +21,12 @@ export default function timeFieldFormat(responseData: any) {
         resData = transformList(resData)
     }
 
-    if (resData && 'data' in resData && Array.isArray(resData.data)) {
+    if (
+        resData &&
+        typeof resData === 'object' &&
+        'data' in resData &&
+        Array.isArray(resData.data)
+    ) {
         resData.data = transformList(resData.data)
     }
 

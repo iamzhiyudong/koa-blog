@@ -14,6 +14,10 @@ const UserDto = {
         name: Joi.string(),
         password: Joi.string(),
     }),
+    loginDto: Joi.object({
+        name: Joi.string().required().error(new Error('用户名必填')),
+        password: Joi.string().required().error(new Error('密码必填')),
+    }),
 }
 
 export default UserDto

@@ -10,7 +10,7 @@ function commonRes(
         | string
         | Array<unknown>
         | null
-        | { data: Array<unknown>; total: number }
+        | { data: Array<unknown> | string; total?: number }
 ) {
     const status = Code.Success.status
     const code = Code.Success.code

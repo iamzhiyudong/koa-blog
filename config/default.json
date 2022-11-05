@@ -4,7 +4,8 @@
     "dbUser": "root",
     "dbPassword": "12345678",
     "app": {
-        "port": 8080
+        "port": 8080,
+        "secret": "test_secret"
     },
     "page": {
         "page_size": 10,

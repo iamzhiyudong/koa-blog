@@ -3,6 +3,7 @@ import {
     createUser,
     deleteUser,
     getUserList,
+    login,
     updateUser,
 } from '../controller/user'
 
@@ -12,5 +13,8 @@ userRouter.get('/', getUserList)
 userRouter.post('/', createUser)
 userRouter.put('/:id', updateUser)
 userRouter.delete('/:id', deleteUser)
+
+userRouter.post('/login', login)
+userRouter.post('/register', createUser)
 
 export default userRouter

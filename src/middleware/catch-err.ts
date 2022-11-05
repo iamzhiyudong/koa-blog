@@ -33,19 +33,29 @@ export async function errorCatch(ctx: Context, next: Next) {
             url: ctx.request.URL,
             query: ctx.request.query,
             body: ctx.request.body,
-            msg: err.msg || err.message
+            msg: err.msg || err.message,
         }
         logger.error(logObj)
         logger.info(err.msg || err.message)
 
         if (err instanceof HttpException) {
             ctx.status = err.status
-            return ctx.body = {
+            return (ctx.body = {
                 code: err.code,
                 msg: err.msg,
                 data: null,
-            }
+            })
         }
-        return ctx.body = '服务器错误'
+
+        // 鉴权错误
+        if (err.message === 'Authentication Error') {
+            ctx.status = 401
+            return (ctx.body = {
+                code: -1,
+                msg: '未登录',
+                data: null,
+            })
+        }
+        return (ctx.body = '服务器错误')
     }
 }
