@@ -14,6 +14,11 @@
             "date": 1667579501745,
             "name": "src/storage/logs/error.log.22-11-05",
             "hash": "54c9af70ea0cb037309a2ca35bbf412d65f1060b2422ff3b15489141c983a699"
+        },
+        {
+            "date": 1667666563872,
+            "name": "src/storage/logs/error.log.22-11-06",
+            "hash": "079bfbb9eef200b7e86ee2a7de9a30d2fccf14635df3516d1e7831adb988c61d"
         }
     ],
     "hashType": "sha256"
