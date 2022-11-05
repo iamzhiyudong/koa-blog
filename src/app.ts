@@ -14,3 +14,10 @@ router.get('/', (ctx: Context, next: Next) => {
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(config.get('app.port'))
+
+// 热更新重载
+process.on('SIGTERM', () => {
+    console.log('=== SIGTERM received, exiting ===')
+    process.exit(0)
+})
+
